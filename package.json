@@ -6,7 +6,8 @@
   "scripts": {
     "seed": "node src/seed.js",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "injest": "node src/injest.js"
   },
   "keywords": [],
   "author": "",

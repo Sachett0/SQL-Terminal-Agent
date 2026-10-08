@@ -14,7 +14,7 @@ export function createDb(path = ':memory:') {
     jobArea TEXT NOT NULL,
     company TEXT NOT NULL,
     jobTitle TEXT NOT NULL,
-    timestamp TIMESTAMP NOT NULL CURRENT_TIMESTAMP
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
   )`);
 
   return db;

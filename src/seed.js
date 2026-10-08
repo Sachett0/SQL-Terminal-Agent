@@ -1,8 +1,7 @@
 import { createWriteStream, statSync } from 'node:fs';
 import { faker } from '@faker-js/faker';
+import { LOG_FILE, LOG_INTERVAL } from './constants.js';
 
-const LOG_FILE = 'access.log';
-const LOG_INTERVAL = 1000; // 1 second
 const maxRecords = Number(process.argv[2] || Infinity); // Get the maximum number of records from command line argument or set to infinity
 
 if (
@@ -27,14 +26,14 @@ function generateUser() {
     location: faker.address.city(),
     jobArea: faker.name.jobArea(),
     company: faker.company.name(),
-    jogTitle: faker.name.jobTitle(),
-    id: faker.string.uuid(),
+    jobTitle: faker.name.jobTitle(),
   };
 }
 
 function generateLogEntry(user) {
   return {
     ...user,
+    id: faker.string.uuid(),
     timestamp: faker.date.recent().toISOString(),
   };
 }
@@ -51,7 +50,7 @@ function writeRecord(line) {
 }
 
 console.log(`Gerando registros de log no arquivo ${LOG_FILE}...`);
-console.log(`Máximo de registros: ${maxRecords.toLocaleString}`);
+console.log(`Máximo de registros: ${maxRecords.toLocaleString()}`);
 
 function convertFromBytesToGB(bytes) {
   return (bytes / 1024 / 1024 / 1024).toFixed(4);
