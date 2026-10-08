@@ -7,7 +7,8 @@
     "seed": "node src/seed.js",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "injest": "node src/injest.js"
+    "injest": "node src/injest.js",
+    "env:setup": "cp .env.example .env.local"
   },
   "keywords": [],
   "author": "",
