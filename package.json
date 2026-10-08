@@ -8,7 +8,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "injest": "node src/injest.js",
-    "env:setup": "cp .env.example .env.local"
+    "env:setup": "cp .env.example .env.local",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "",

@@ -95,3 +95,27 @@ generateSqlObject('Quais são os 10 usuários mais recentes?')
   .catch((error) => {
     console.error('Erro ao gerar SQL:', error.message);
   });
+
+export async function generateTextAnswer({ question, sql, rows }) {
+  const { text } = await generateText({
+    model,
+    system: `
+      Responda em português, de forma objetiva, apenas com base nos dados retornados.
+      Se o resultado estiver vazio, diga isso claramente.
+    `,
+    prompt: `
+      Pergunta original:
+      ${question}
+
+      SQL executada:
+      ${sql}
+
+      Linhas retornadas em JSON:
+      ${JSON.stringify(rows, null, 2)}
+
+      Resposta:E
+    `,
+  });
+
+  return text.trim();
+}
