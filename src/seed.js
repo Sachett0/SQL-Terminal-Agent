@@ -1,6 +1,7 @@
 import { createWriteStream, statSync } from 'node:fs';
 import { faker } from '@faker-js/faker';
 import { LOG_FILE, LOG_INTERVAL } from './constants.js';
+import { generateUser, generateLogEntry } from './mocks.js';
 
 const maxRecords = Number(process.argv[2] || Infinity); // Get the maximum number of records from command line argument or set to infinity
 
@@ -15,28 +16,6 @@ if (
 }
 
 const stream = createWriteStream(LOG_FILE);
-
-function generateUser() {
-  return {
-    ip: faker.internet.ip(),
-    username: faker.internet.userName(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    email: faker.internet.email(),
-    location: faker.address.city(),
-    jobArea: faker.name.jobArea(),
-    company: faker.company.name(),
-    jobTitle: faker.name.jobTitle(),
-  };
-}
-
-function generateLogEntry(user) {
-  return {
-    ...user,
-    id: faker.string.uuid(),
-    timestamp: faker.date.recent().toISOString(),
-  };
-}
 
 //Backpressure implementation
 function writeRecord(line) {
